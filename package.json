@@ -1,0 +1,31 @@
+{
+  "name": "text-fragment-stitch",
+  "version": "0.0.1",
+  "description": "Stitch back together a set of randomly ordered text fragments with overlaps.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "common-readme": "^1.1.0",
+    "dependency-check": "^3.0.0",
+    "standard": "^10.0.3",
+    "tape": "^4.8.0"
+  },
+  "bugs": {
+    "url": "https://github.com/jayrbolton/text-fragment-stitch/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jayrbolton/text-fragment-stitch.git"
+  },
+  "scripts": {
+    "test": "dependency-check package.json && standard && node test/",
+    "preversion": "npm run test",
+    "postversion": "git push && git push --tags"
+  },
+  "keywords": [],
+  "author": "jayrbolton <jayrbolton@protonmail.com>",
+  "license": "MIT"
+}
