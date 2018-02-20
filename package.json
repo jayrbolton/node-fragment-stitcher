@@ -23,7 +23,8 @@
   "scripts": {
     "test": "dependency-check package.json && standard && node test/",
     "preversion": "npm run test",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "start": "node server/"
   },
   "keywords": [],
   "author": "jayrbolton <jayrbolton@protonmail.com>",

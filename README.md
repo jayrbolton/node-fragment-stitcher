@@ -1,47 +1,45 @@
 # text-fragment-stitch
 
-> Stitch back together a set of randomly ordered text fragments with overlaps.
+> Given a set of randomly ordered, url-encoded text fragments with prefix/suffix overlap, stitch them back together in the right order without overlap
 
-background details relevant to understanding what this module does
+This includes a command line app and a web server to stitch text fragments together.
 
 ## Usage
 
-```js
-var textFragmentStitch = require('text-fragment-stitch')
-
-console.log('hello warld')
-```
-
-outputs
-
-```
-hello warld
-```
-
-## API
+First make sure you have the latest versions of `node` and `npm` installed. Then run:
 
 ```js
-var textFragmentStitch = require('text-fragment-stitch')
+npm install
 ```
 
-See [api_formatting.md](api_formatting.md) for tips.
+To run the command-line app, you can either use stdin or pass in a file path
 
-## Install
-
-With [npm](https://npmjs.org/) installed, run
-
-```
-$ npm install text-fragment-stitch
+```js
+node index.js test/samples/IpsumLorem-short-frags.txt
+cat test/samples/IpsumLorem-short-frags.txt | node index.js
 ```
 
-## Acknowledgments
+To run the small web server, simply run 
 
-text-fragment-stitch was inspired by..
+```js
+npm start
+```
+
+You will have a server running on port 3737, where you can make a POST request with a set of text fragments.
+
+Simply post any text as binary data to the server and you will get the resulting repaired text in the response. For example:
+
+```js
+curl --data-binary "@test/samples/IpsumLorem-short-frags.txt" localhost:3737 
+```
+
+If the app is unable to stitch the text together correctly, you will get a 422 response with error information about the fragments.
+
+## Approach
+
+### Ambiguity
 
 ## See Also
-
-- [`noffle/common-readme`](https://github.com/noffle/common-readme)
-- ...
 
 ## License
 
