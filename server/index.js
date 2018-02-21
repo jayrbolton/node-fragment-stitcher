@@ -1,12 +1,10 @@
 const http = require('http')
 const port = 3737
-const readline = require('readline')
 const stitchStream = require('../lib/stitch-stream')
 
 const requestHandler = (request, response) => {
   if (request.method === 'POST') {
-    const inputStream = readline.createInterface({ input: request, terminal: false })
-    stitchStream(inputStream, function (err, result) {
+    stitchStream(request, function (err, result) {
       if (err) {
         response.statusCode = 422
         response.write(err.toString() + '\n')

@@ -1,6 +1,55 @@
 const test = require('tape')
 const characterTable = require('../lib/character-table')
 const attemptMatch = require('../lib/attempt-match')
+const fs = require('fs')
+const stitchStream = require('../lib/stitch-stream')
+
+test('example: hello.txt', function (t) {
+  testFile('hello-frags.txt', 'hello.java', t)
+})
+
+test('example: chopfile-20.txt', function (t) {
+  testFile('chopfile-frags-20.txt', 'chopfile.py', t)
+})
+
+test('example: Shake.txt', function (t) {
+  testFile('Shake-frags.txt', 'Shake.txt', t)
+})
+
+test('example: IpsumLorem.txt', function (t) {
+  testFile('IpsumLorem-short-frags.txt', 'IpsumLorem-short.txt', t)
+})
+
+// TODO to discuss
+test.skip('example: chopfile-rand.txt', function (t) {
+  testFile('chopfile-frags-15.txt', 'chopfile.py', t)
+})
+
+// Test a given chopped file and correct version
+function testFile (choppedFile, correctFile, t) {
+  const input = fs.createReadStream('test/samples/' + choppedFile, 'utf8')
+  const ts = Date.now()
+  stitchStream(input, function (err, result) {
+    t.error(err, 'no stitchStream err')
+    const correct = fs.readFileSync('test/samples/correct/' + correctFile, 'utf8')
+    t.strictEqual(correct, result)
+    console.log('Milliseconds: ', Date.now() - ts)
+    t.end()
+  })
+}
+
+// TODO to discuss
+test.skip('example: chopfile-rand.txt', function (t) {
+  const input = fs.createReadStream('test/samples/chopfile-frags-15.txt', 'utf8')
+  const ts = Date.now()
+  stitchStream(input, function (err, result) {
+    t.error(err, 'no stitchStream err')
+    const correct = fs.readFileSync('test/samples/correct/chopfile.py', 'utf8')
+    t.strictEqual(correct, result)
+    console.log('Milliseconds: ', Date.now() - ts)
+    t.end()
+  })
+})
 
 test('attemptMatch successfully matches a set of examples', function (t) {
   var ts1 = Date.now()
