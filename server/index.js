@@ -10,13 +10,14 @@ const requestHandler = (request, response) => {
       if (err) {
         response.statusCode = 422
         response.write(err.toString() + '\n')
-        response.end(result.toString())
+        response.end((result || '').toString())
       } else {
         response.end(result.toString())
       }
     })
   } else {
-    response.end('Make a POST request with text fragment data.')
+    response.write('Make a POST request with text fragment data.\n')
+    response.end('Example: curl --data-binary "@path/file.txt" localhost:3737')
   }
 }
 
