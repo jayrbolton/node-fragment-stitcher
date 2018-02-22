@@ -2,6 +2,11 @@ const http = require('http')
 const port = 3737
 const stitchStream = require('../lib/stitch-stream')
 
+const welcomeText = `
+  Make a POST request with text fragment data.
+  Example: curl --data-binary "@path/file.txt" localhost:3737
+`
+
 const requestHandler = (request, response) => {
   if (request.method === 'POST') {
     stitchStream(request, function (err, result) {
@@ -14,8 +19,7 @@ const requestHandler = (request, response) => {
       }
     })
   } else {
-    response.write('Make a POST request with text fragment data.\n')
-    response.end('Example: curl --data-binary "@path/file.txt" localhost:3737')
+    response.end(welcomeText)
   }
 }
 
@@ -26,5 +30,5 @@ server.listen(port, function (err) {
     return console.log('Error starting server:', err)
   }
   console.log('Server listening on localhost:' + port)
-  console.log('Make a POST request with text fragment data.')
+  console.log(welcomeText)
 })
