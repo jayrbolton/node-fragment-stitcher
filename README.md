@@ -1,4 +1,4 @@
-# text-fragment-stitch
+# node-fragment-stitcher
 
 > Given a set of randomly ordered, url-encoded text fragments with prefix/suffix overlap, stitch them back together in the right order without overlap
 
