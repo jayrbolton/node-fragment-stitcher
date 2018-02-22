@@ -68,19 +68,7 @@ h+overlap%0Aimpor
 %22%22%0Awith+open%28sy
 rgv%5B1%5D%2C+%27r%27%29+as
 
-The suffix matches for lines 33 and 49 are ambiguous
+The suffix matches for lines 33 (b) and 49 (c) are ambiguous
 If we favor longest matches, then we get b->d and c->a (lengths 10 and 5)
 But the correct matches are b->a and c->d (lengths 5 and 8)
-
-If instead we match by preifx
-then a matches with 
-line 33 (length 5) (b)
-line 43 (length 6) (e)
-line 49 (length 3)
-
-d matches with
-line 49 (len 8) (c)
-line 33 (len 10) (b)
-line 14 (4)
-
-So the longest matches are b->d and e->a. Still ambiguous
+Therefore, favoring longest matches in this case does not work
